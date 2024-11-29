@@ -1,13 +1,16 @@
-const { urlencoded } = require("body-parser");
 const express = require("express");
-const app = express();
+const connectDB = require("./config/db");
+const dotenv = require("dotenv").config();
+
 const port = 3000;
 const message = "Voici un message depuis le serveur.";
 
-// app.get("/post", (req, res) => {
-//   res.json({ message });
-// });
+// Connexion à DB
 
+connectDB();
+const app = express();
+
+// Middleware qui permet de traiter les données de la request
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
